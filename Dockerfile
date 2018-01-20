@@ -1,6 +1,8 @@
 FROM arm32v7/python:2.7-slim
 MAINTAINER James McKay version: 0.1
 
+RUN pip install pyserial
+
 ADD test.py /
 ADD const.py /
 ADD thermalPrinter.py /
