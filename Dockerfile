@@ -1,8 +1,10 @@
-FROM arm32v7/python:2.7-slim
+FROM resin/rpi-raspbian:jessie
 MAINTAINER James McKay version: 0.1
 
+# Install dependencies
 RUN apt-get update && apt-get install -y \
-    python-pip
+    python \
+    python-pip \
 
 RUN pip install pyserial
 
