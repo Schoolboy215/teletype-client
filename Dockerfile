@@ -2,7 +2,7 @@ FROM resin/rpi-raspbian:jessie
 MAINTAINER James McKay version: 0.1
 
 # Install dependencies
-RUN apt-get update && apt-get install -y \
+RUN apt-get install -y \
     python \
     python-pip
 
