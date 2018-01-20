@@ -4,7 +4,7 @@ MAINTAINER James McKay version: 0.1
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     python \
-    python-pip \
+    python-pip
 
 RUN pip install pyserial
 
