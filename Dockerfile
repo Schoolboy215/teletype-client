@@ -1,12 +1,10 @@
-FROM resin/rpi-raspbian:jessie
-MAINTAINER James McKay version: 0.1
+FROM resin/rpi-raspbian:latest
 
 # Install dependencies
-RUN apt-get install -y \
-    python \
-    python-pip
+RUN apt-get update
+RUN apt-get -qy install python
 
-RUN pip install pyserial
+#RUN pip install pyserial
 
 ADD test.py /
 ADD const.py /
