@@ -1,4 +1,5 @@
 FROM resin/rpi-raspbian:latest
+ENTRYPOINT []
 
 # Install dependencies
 RUN apt-get update
