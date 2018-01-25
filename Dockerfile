@@ -2,10 +2,7 @@ FROM resin/rpi-raspbian:latest
 ENTRYPOINT []
 
 # Install dependencies
-RUN apt-get update
-RUN apt-get -qy install /
-python /
-python-pip
+RUN apt-get -qy install python python-pip
 
 RUN pip install pyserial
 
