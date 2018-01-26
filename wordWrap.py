@@ -32,10 +32,7 @@ def correctWidth (inputString, width):
                 lineStart = currentIndex
             else:
                 finalString += "\n"
-                lineStart = currentIndex
-        print(inputString)
-        print("------")
-        print(currentIndex)        
+                lineStart = currentIndex       
         if (inputString[currentIndex] == " " and currentIndex != lineStart):
             lastSpaceIndex = currentIndex
             finalString += " "
