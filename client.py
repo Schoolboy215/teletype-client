@@ -5,39 +5,40 @@ import pickle
 import time
 
 import thermalPrinter
+import config as serverConfig
 
 printer = thermalPrinter.ThermalPrinter()
 
 def mainLoop(config):
         s = requests.session()
-        while True:
-                r = s.post(url='https://teleType.personalspaceshow.lawyer/api/remote/checkIn', json={'callsign':config['callsign'],'code':config['code']})
-                print(r.text)
-                data = json.loads(r.text)
+        try:
+                r = s.post(url=serverConfig.SERVER_URL+'/api/remote/checkIn', json={'callsign':config['callsign'],'code':config['code']})
+        except:
+                printer.write("Server could not be reached at " + serverConfig.SERVER_URL)
+                return
+        print(r.text)
+        data = json.loads(r.text)
+        if data['status'] == 2:
+                printer.write("The server doesn't know our callsign. Deleting local config and re-registering")
+                os.remove('config.txt')
+        else:
                 if (len(data['data']['messages'])):
+                        needToUpdate = False
                         for m in data['data']['messages']:
+                                if m['type'] == 'UPDATE':
+                                        needToUpdate = True
                                 printer.write(m['timestamp']+"\nFrom:"+m['from']+"\nTo  :"+m['to'])
                                 printer.thickBar()
                                 printer.write(m['body'])
                                 printer.feed(3)
-                time.sleep(30)
-
-time.sleep(15)
+                        if needToUpdate:
+                                printer.write("GOING TO UPDATE NOW")
 
 if os.path.isfile('config.txt'):
         config = pickle.load(open('config.txt','rb'))
         mainLoop(config)
-        #s = requests.session()
-        #r = s.post(url='https://teleType.personalspaceshow.lawyer/api/remote/checkIn', json={'callsign':config['callsign'],'code':config['code']})
-        #print(r.text)
-        #data = json.loads(r.text)
-        #if (len(data['data']['messages'])):
-        #       for m in data['data']['messages']:
-        #               printer.write(m['body'])
-        #               printer.feed(3)
-
 else:
-        r = requests.get('https://teletype.personalspaceshow.lawyer/api/remote/firstContact')
+        r = requests.get(serverConfig.SERVER_URL+'/api/remote/firstContact')
         data = json.loads(r.text)
         config = data
         pickle.dump(data, open('config.txt','wb'))
