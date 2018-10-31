@@ -3,7 +3,7 @@ import struct
 import serial
 import wordWrap
 
-enableSerial = False
+enableSerial = True
 
 class ThermalPrinter:
 	ser = None
