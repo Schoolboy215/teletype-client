@@ -34,7 +34,7 @@ def mainLoop(config):
                                 printer.feed(3)
                         if needToUpdate:
                                 printer.write("GOING TO UPDATE NOW")
-                                subprocess.call("update.sh")
+                                subprocess.call("bash update.sh")
 
 if os.path.isfile('config.txt'):
         config = pickle.load(open('config.txt','rb'))
