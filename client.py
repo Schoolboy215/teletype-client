@@ -13,14 +13,16 @@ printer = thermalPrinter.ThermalPrinter()
 def mainLoop(config):
         s = requests.session()
         try:
-                r = s.post(url=serverConfig.SERVER_URL+'/api/remote/checkIn', json={'callsign':config['callsign'],'code':config['code']})
+                r = s.post(url=serverConfig.SERVER_URL+'/api/remote/checkIn', json={'callsign':config['callsign'],'code':config['code']}, timeout=5)
         except:
                 printer.write("Server could not be reached at " + serverConfig.SERVER_URL)
+                printer.feed(3)
                 return
         print(r.text)
         data = json.loads(r.text)
         if data['status'] == 2:
                 printer.write("The server doesn't know our callsign. Deleting local config and re-registering")
+                printer.feed(3)
                 os.remove('config.txt')
         else:
                 if (len(data['data']['messages'])):
@@ -34,13 +36,19 @@ def mainLoop(config):
                                 printer.feed(3)
                         if needToUpdate:
                                 printer.write("GOING TO UPDATE NOW")
+                                printer.feed(3)
                                 subprocess.call("bash update.sh")
 
 if os.path.isfile('config.txt'):
         config = pickle.load(open('config.txt','rb'))
         mainLoop(config)
 else:
-        r = requests.get(serverConfig.SERVER_URL+'/api/remote/firstContact')
+        try:
+                r = requests.get(serverConfig.SERVER_URL+'/api/remote/firstContact', timeout=5)
+        except:
+                printer.write("Server could not be reached at " + serverConfig.SERVER_URL)
+                printer.feed(3)
+                return
         data = json.loads(r.text)
         config = data
         pickle.dump(data, open('config.txt','wb'))
