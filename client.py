@@ -3,6 +3,7 @@ import json
 import os.path
 import pickle
 import time
+import subprocess
 
 import thermalPrinter
 import config as serverConfig
@@ -33,6 +34,7 @@ def mainLoop(config):
                                 printer.feed(3)
                         if needToUpdate:
                                 printer.write("GOING TO UPDATE NOW")
+                                subprocess.call("update.sh")
 
 if os.path.isfile('config.txt'):
         config = pickle.load(open('config.txt','rb'))
