@@ -18,8 +18,6 @@ class ThermalPrinter:
 						timeout = 1
 					)
 
-		#self.ser.write(const.RESET_ALL.encode())
-		#self.ser.write(const.MAKE_DENSE.encode())
 	def write(self,buffer):
 		if enableSerial:
 			buffer = wordWrap.correctWidth(buffer,30)
