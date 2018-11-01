@@ -20,10 +20,10 @@ def mainLoop(config):
                         printer.feed(3)
                         config['timedOut'] = True
                         pickle.dump(config, open('config.txt','wb'))
-                if 'timedOut' in config and config['timedOut'] == True:
-                        config['timedOut'] = False
-                        pickle.dump(config, open('config.txt','wb'))
-                return
+                        return
+        if 'timedOut' in config and config['timedOut'] == True:
+                config['timedOut'] = False
+                pickle.dump(config, open('config.txt','wb'))
         print(r.text)
         data = json.loads(r.text)
         if data['status'] == 2:
