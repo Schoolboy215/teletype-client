@@ -45,16 +45,15 @@ if os.path.isfile('config.txt'):
 else:
         try:
                 r = requests.get(serverConfig.SERVER_URL+'/api/remote/firstContact', timeout=5)
+                data = json.loads(r.text)
+                config = data
+                pickle.dump(data, open('config.txt','wb'))
+                print('Got a response from the server and saved it')
+                printer.welcome()
+                printer.write("\nYour callsign is\n" + data['callsign'])
+                printer.feed(3)
+                print(r.text)
+                mainLoop(data)
         except:
                 printer.write("Server could not be reached at " + serverConfig.SERVER_URL)
                 printer.feed(3)
-                return
-        data = json.loads(r.text)
-        config = data
-        pickle.dump(data, open('config.txt','wb'))
-        print('Got a response from the server and saved it')
-        printer.welcome()
-        printer.write("\nYour callsign is\n" + data['callsign'])
-        printer.feed(3)
-        print(r.text)
-        mainLoop(data)
