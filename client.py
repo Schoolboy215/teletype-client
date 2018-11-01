@@ -15,7 +15,7 @@ def mainLoop(config):
         try:
                 r = s.post(url=serverConfig.SERVER_URL+'/api/remote/checkIn', json={'callsign':config['callsign'],'code':config['code']}, timeout=5)
         except:
-                if 'timedOut' in config and config['timedOut'] == False:
+                if not 'timedOut' in config or config['timedOut'] == False:
                         printer.write("Server could not be reached at " + serverConfig.SERVER_URL)
                         printer.feed(3)
                         config['timedOut'] == True
