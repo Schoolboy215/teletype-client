@@ -18,10 +18,10 @@ def mainLoop(config):
                 if not 'timedOut' in config or config['timedOut'] == False:
                         printer.write("Server could not be reached at " + serverConfig.SERVER_URL)
                         printer.feed(3)
-                        config['timedOut'] == True
+                        config['timedOut'] = True
                         pickle.dump(config, open('config.txt','wb'))
                 if 'timedOut' in config and config['timedOut'] == True:
-                        config['timedOut'] == False
+                        config['timedOut'] = False
                         pickle.dump(config, open('config.txt','wb'))
                 return
         print(r.text)
