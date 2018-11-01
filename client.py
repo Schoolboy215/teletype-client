@@ -20,10 +20,10 @@ def mainLoop(config):
                         printer.feed(3)
                         config['timedOut'] == True
                         pickle.dump(config, open('config.txt','wb'))
-                        return
-        if 'timedOut' in config and config['timedOut'] == True:
-                config['timedOut'] == False
-                pickle.dump(config, open('config.txt','wb'))
+                if 'timedOut' in config and config['timedOut'] == True:
+                        config['timedOut'] == False
+                        pickle.dump(config, open('config.txt','wb'))
+                return
         print(r.text)
         data = json.loads(r.text)
         if data['status'] == 2:
@@ -43,7 +43,7 @@ def mainLoop(config):
                         if needToUpdate:
                                 printer.write("GOING TO UPDATE NOW")
                                 printer.feed(3)
-                                subprocess.call("bash update.sh")
+                                subprocess.call("sudo bash ./update.sh", shell=True)
 
 if os.path.isfile('config.txt'):
         config = pickle.load(open('config.txt','rb'))
