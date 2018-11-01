@@ -1,5 +1,7 @@
 # teletype-client
 
-After pulling the image, start it with the following command
+This client is meant to connect to a TeleType server and print messages on a thermal receipt printer.
 
-`docker run --device="/dev/ttyS0" --privileged schoolboy215/teletype-client`
+## Installation
+Refer to the wiki for instructions on how to set this up on a new raspberry pi.
+  
