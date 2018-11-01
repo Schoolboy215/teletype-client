@@ -15,9 +15,15 @@ def mainLoop(config):
         try:
                 r = s.post(url=serverConfig.SERVER_URL+'/api/remote/checkIn', json={'callsign':config['callsign'],'code':config['code']}, timeout=5)
         except:
-                printer.write("Server could not be reached at " + serverConfig.SERVER_URL)
-                printer.feed(3)
-                return
+                if 'timedOut' in config and config['timedOut'] == False:
+                        printer.write("Server could not be reached at " + serverConfig.SERVER_URL)
+                        printer.feed(3)
+                        config['timedOut'] == True
+                        pickle.dump(config, open('config.txt','wb'))
+                        return
+        if 'timedOut' in config and config['timedOut'] == True:
+                config['timedOut'] == False
+                pickle.dump(config, open('config.txt','wb'))
         print(r.text)
         data = json.loads(r.text)
         if data['status'] == 2:
