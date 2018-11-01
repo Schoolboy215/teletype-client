@@ -8,7 +8,7 @@ This client is meant to connect to a TeleType server and print messages on a the
 2. Log in as the **pi** user and perform your typical setup (change password from default, run security updates, etc.)
 3. Run the following commands:
     1. `sudo apt-get install git`
-    2. `sudo apt-get install python-dev python-setuptools`
+    2. `sudo apt-get install libjpeg-dev`
     3. `sudo apt-get install python-pip`
     4. `git clone https://github.com/Schoolboy215/teletype-client`
     5. `cd teletype-client`
