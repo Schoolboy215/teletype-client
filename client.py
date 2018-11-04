@@ -40,6 +40,9 @@ def mainLoop(config):
                                 printer.thickBar()
                                 printer.write(m['body'])
                                 printer.feed(3)
+                                if 'imageData' in m:
+                                        print("There is also an image for this one")
+                                        pass
                         if needToUpdate:
                                 printer.write("GOING TO UPDATE NOW")
                                 printer.feed(3)
