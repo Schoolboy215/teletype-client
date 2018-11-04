@@ -4,6 +4,8 @@ import os.path
 import pickle
 import time
 import subprocess
+from PIL import Image
+import io
 
 import thermalPrinter
 import config as serverConfig
@@ -24,7 +26,7 @@ def mainLoop(config):
         if 'timedOut' in config and config['timedOut'] == True:
                 config['timedOut'] = False
                 pickle.dump(config, open('config.txt','wb'))
-        print(r.text)
+        #print(r.text)
         data = json.loads(r.text)
         if data['status'] == 2:
                 printer.write("The server doesn't know our callsign. Deleting local config and re-registering")
@@ -41,7 +43,9 @@ def mainLoop(config):
                                 printer.write(m['body'])
                                 printer.feed(3)
                                 if 'imageData' in m:
-                                        print("There is also an image for this one")
+                                        image = Image.open(io.BytesIO(m['imageData']))
+                                        printer.printImage(image)
+                                        printer.feed(3)
                                         pass
                         if needToUpdate:
                                 printer.write("GOING TO UPDATE NOW")
