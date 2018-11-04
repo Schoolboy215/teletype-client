@@ -23,7 +23,7 @@ class ThermalPrinter:
 	def write(self,buffer):
 		if enableSerial:
 			buffer = wordWrap.correctWidth(buffer,30)
-			self.printer.write(buffer)
+			self.printer.write(buffer.encode())
 			self.printer.feed()
 			#self.ser.write(buffer.encode())
 			#self.ser.write(const.CARRIAGE_RETURN.encode())
@@ -51,5 +51,5 @@ class ThermalPrinter:
 			#self.ser.write(const.RESET_ALL.encode())
 	def welcome(self):
 		if enableSerial:
-			self.printer.write(const.WELCOME_MESSAGE)
+			self.printer.write(const.WELCOME_MESSAGE.encode())
 			#self.write(const.WELCOME_MESSAGE)
