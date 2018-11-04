@@ -43,10 +43,11 @@ def mainLoop(config):
                                 printer.write(m['body'])
                                 printer.feed(3)
                                 if 'imageData' in m:
-                                        image = Image.open(io.BytesIO(m['imageData']))
+                                        b = bytearray()
+                                        b.extend(m['imageData']['data'])
+                                        image = Image.open(io.BytesIO(b))
                                         printer.printImage(image)
                                         printer.feed(3)
-                                        pass
                         if needToUpdate:
                                 printer.write("GOING TO UPDATE NOW")
                                 printer.feed(3)
