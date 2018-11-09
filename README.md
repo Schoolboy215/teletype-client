@@ -1,6 +1,6 @@
 # teletype-client
 
-This client is meant to connect to a TeleType server and print messages on a thermal receipt printer.
+This client is meant to connect to a [TeleType server](https://github.com/Schoolboy215/teleType) and print messages on a thermal receipt printer.
 
 ## Installation
 
