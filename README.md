@@ -1,6 +1,6 @@
 # teletype-client
 
-This client is meant to connect to a TeleType server and print messages on a thermal receipt printer.
+This client is meant to connect to a [TeleType server](https://github.com/Schoolboy215/teleType) and print messages on a thermal receipt printer.
 
 ## Installation
 
@@ -14,7 +14,7 @@ This client is meant to connect to a TeleType server and print messages on a the
     5. `cd teletype-client`
     6. `pip install -r requirements.txt`
     7. `python install.py`
-        * **Note that at this stage you will be prompted to input a server and repository url. Leave them default if you don't know what you're doing.**
+        * **Note that at this stage you will be prompted to input a server and repository url. Get the server information from whoever is running your server. Leave the repository default unless you want to get updates from your own fork or something.**
 4. Enable the serial hardware on the pi
     1. run the command 'sudo raspi-config'
     2. Select *Interfacing Options* and press `ENTER`
