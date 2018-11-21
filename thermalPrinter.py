@@ -35,4 +35,4 @@ class ThermalPrinter:
 			pass
 	def welcome(self):
 		if enableSerial:
-			self.printer.write(const.WELCOME_MESSAGE.encode())
+			self.printer.write(wordWrap.correctWidth(const.WELCOME_MESSAGE.encode(),30))
