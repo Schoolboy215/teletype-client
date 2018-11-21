@@ -1,3 +1,5 @@
+import config as serverConfig
+
 RESET_ALL = "\x1B\x40"
 
 MAKE_DENSE = "\x12\x23\xF5"
@@ -13,4 +15,4 @@ PRINT_AND_4 = "\x1B\x64\x04"
 HORIZONTAL_BAR = "------------------------------"
 
 
-WELCOME_MESSAGE = "Hello! It looks like you haven't used your teleType printer before. Please go to https://teleType.personalspaceshow.lawyer and follow the instructions there. Your callsign will be printed below."
+WELCOME_MESSAGE = "Hello! It looks like you haven't used your teleType printer before. Please go to " + serverConfig.SERVER_URL + " and follow the instructions there. Your callsign will be printed below."
