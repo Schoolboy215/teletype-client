@@ -15,7 +15,7 @@ class ThermalPrinter:
 	def write(self,buffer):
 		if enableSerial:
 			buffer = wordWrap.correctWidth(buffer,30)
-			self.printer.write(buffer.encode())
+			self.printer.write(buffer.encode('ascii',errors='ignore'))
 			self.printer.feed()
 		else:
 			print(buffer)
