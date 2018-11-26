@@ -40,7 +40,8 @@ def mainLoop(config):
                                         needToUpdate = True
                                 printer.write(m['timestamp']+"\nFrom:"+m['from']+"\nTo  :"+m['to'])
                                 printer.thickBar()
-                                printer.write(m['body'])
+                                if m['body'] != "":
+                                        printer.write(m['body'])
                                 printer.feed(3)
                                 if 'imageData' in m:
                                         b = bytearray()
