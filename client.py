@@ -66,6 +66,7 @@ def mainLoop(config):
                                 printer.write("GOING TO UPDATE NOW")
                                 printer.feed(1)
                                 subprocess.call("sudo bash ./update.sh", shell=True)
+                                printer.write(subprocess.check_output(['git','log','-1']))
 
 if os.path.isfile('config.txt'):
         config = pickle.load(open('config.txt','rb'))

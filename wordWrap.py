@@ -11,7 +11,7 @@ def correctWidth (inputString, width):
         stringLength -= 1
     
     while (currentIndex < stringLength):
-        if (inputString[currentIndex] == "\n"):
+        if (inputString[currentIndex] == "\n" and currentIndex != stringLength-1):
             finalString += "\n"
             currentIndex += 1
             lineStart = currentIndex
