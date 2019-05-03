@@ -6,6 +6,7 @@ This client is meant to connect to a [TeleType server](https://github.com/School
 
 1. Start with a fresh installation of raspbian lite
 2. Log in as the **pi** user and perform your typical setup (change password from default, run security updates, etc.)
+    * **Setting your timezone is important! If you don't do this, all messages will show as UTC**
 3. Run the following commands:
     1. `sudo apt-get install git`
     2. `sudo apt-get install libjpeg-dev`
